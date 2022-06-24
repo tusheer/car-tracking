@@ -5,7 +5,9 @@
     "types": "./index.tsx",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint *.ts*"
+        "lint": "eslint --fix --ext .ts,.tsx .",
+        "format": "prettier --ignore-path .gitignore --write .",
+        "type-check": "tsc"
     },
     "devDependencies": {
         "@types/react": "^18.0.14",

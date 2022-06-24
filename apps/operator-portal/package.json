@@ -6,7 +6,9 @@
         "dev": "next dev --port 3001",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "eslint --fix --ext .ts,.tsx .",
+        "format": "prettier --ignore-path .gitignore --write .",
+        "type-check": "tsc"
     },
     "dependencies": {
         "next": "12.1.6",
