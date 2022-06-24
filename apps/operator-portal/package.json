@@ -20,6 +20,7 @@
         "eslint-config-custom": "*",
         "next-transpile-modules": "9.0.0",
         "tsconfig": "*",
+        "types": "*",
         "@types/node": "^18.0.0",
         "@types/react": "18.0.14",
         "typescript": "^4.7.4",

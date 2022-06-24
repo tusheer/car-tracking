@@ -1,4 +1,3 @@
-import { NotFound } from '../../common/errors';
 import { save, findOne } from '../../common/handler';
 import { createUserValidate } from './validation';
 import bcrypt from 'bcrypt';
@@ -15,6 +14,7 @@ const searchOne = async (searchRequest) => {
   if (user) {
     return user;
   }
+
   return null;
 };
 
