@@ -23,7 +23,7 @@
         "@types/react": "^18.0.14",
         "@types/react-dom": "^18.0.5",
         "eslint": "^8.18.0",
-        "eslint-config": "*",
+        "eslint-config-custom": "*",
         "tailwind-config": "*",
         "ts-config": "*",
         "typescript": "^4.7.4",

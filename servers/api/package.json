@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "ts-config": "*",
-    "eslint-config": "*",
+    "eslint-config-custom": "*",
     "@types/express": "^4.17.13",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.0.0",
