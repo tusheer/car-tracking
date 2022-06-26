@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/nodeapp.json",
+  "extends": "ts-config/nodeapp.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "rootDir": "./",

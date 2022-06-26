@@ -1,5 +1,5 @@
 {
-    "name": "tsconfig",
+    "name": "ts-config",
     "version": "0.0.0",
     "private": true,
     "main": "index.js",
@@ -8,5 +8,8 @@
         "nextjs.json",
         "react-library.json",
         "nodeapp.json"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

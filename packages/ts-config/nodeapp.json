@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "NodeJS App",
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"]
+}

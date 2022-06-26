@@ -1,10 +1,12 @@
 {
-    "name": "manager-dashboard",
+    "name": "manager-portal",
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
+        "dev": "concurrently \"next dev -p 3000\" \"npm run watch:tailwind\"",
+        "build": "postcss styles/tailwind.css -o styles/build.css && next build",
+        "build:tailwind": "concurrently \"next dev\" \"npm run watch:tailwind\"",
+        "watch:tailwind": "TAILWIND_MODE=watch postcss styles/tailwind.css -o styles/build.css --watch",
         "start": "next start",
         "lint": "eslint --fix --ext .ts,.tsx .",
         "format": "prettier --ignore-path .gitignore --write .",
@@ -14,6 +16,7 @@
         "next": "12.1.6",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "sass": "^1.53.0",
         "ui": "*"
     },
     "devDependencies": {
@@ -26,15 +29,16 @@
         "autoprefixer": "^10.4.4",
         "concurrently": "^7.1.0",
         "eslint": "8.12.0",
-        "eslint-config-custom": "*",
+        "eslint-config": "*",
         "eslint-config-next": "12.1.4",
         "eslint-config-prettier": "^8.5.0",
         "next-transpile-modules": "9.0.0",
         "postcss": "^8.4.12",
         "postcss-cli": "^9.1.0",
         "prettier": "^2.6.2",
+        "tailwind-config": "*",
         "tailwindcss": "^3.0.23",
-        "tsconfig": "*",
+        "ts-config": "*",
         "typescript": "^4.7.4"
     }
 }
