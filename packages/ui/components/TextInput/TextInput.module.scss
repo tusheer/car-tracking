@@ -1,0 +1,109 @@
+.root {
+    position: relative;
+    .input_wraper {
+        display: flex;
+        align-items: center;
+        height: 3.125rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 1px 0 0 #e8e8e8;
+        background-color: #fafafa;
+    }
+
+    .error_text {
+        color: #ff5b43;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    input,
+    textarea {
+        font-size: 1rem;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        padding: 0px 10px;
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: transparent;
+        }
+        &:placeholder-shown ~ .label {
+            top: 1.063rem;
+            left: 0.938rem;
+            bottom: 0.875rem;
+        }
+    }
+
+    input:-webkit-autofill ~ .label,
+    input:-webkit-autofill:hover ~ .label,
+    input:-webkit-autofill:focus ~ .label,
+    textarea:-webkit-autofill ~ .label,
+    textarea:-webkit-autofill:hover ~ .label,
+    textarea:-webkit-autofill:focus ~ .label {
+        top: -1.5em !important;
+        left: 0 !important;
+        font-size: 0.875rem;
+        color: #9c51e0;
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
+
+    &:focus-within {
+        .input_wraper {
+            border: 1px solid #9c51e0;
+            box-shadow: 0 1px 0 0 #9c51e0;
+        }
+
+        .label {
+            top: -1.5em !important;
+            left: 0 !important;
+            font-size: 0.875rem;
+            color: #9c51e0;
+        }
+    }
+
+    .label {
+        position: absolute;
+        top: -1.5em;
+        left: 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: left;
+        color: #9797a0;
+        letter-spacing: 0.65px;
+        transition: all 0.15s ease-in-out 0s;
+    }
+}
+
+.error {
+    .input_wraper {
+        box-shadow: 0 1px 0 0 #ff5b43 !important;
+    }
+    &:focus-within {
+        .input_wraper {
+            border: 1px solid #ff5b43 !important;
+            box-shadow: 0 1px 0 0 #ff5b43 !important;
+        }
+
+        .label {
+            color: #ff5b43 !important;
+        }
+    }
+}
+
+.text_area .input_wraper {
+    height: auto !important;
+    textarea {
+        padding-top: 6px;
+    }
+}

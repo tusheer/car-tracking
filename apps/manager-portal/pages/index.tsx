@@ -1,10 +1,4 @@
-import { Button } from 'ui';
-
+import SigninContainer from '../src/modules/signin/containers/SigninContainer';
 export default function Web() {
-    return (
-        <div>
-            <h1 className="bg-dh-green-800">Web</h1>
-            <Button />
-        </div>
-    );
+    return <SigninContainer />;
 }

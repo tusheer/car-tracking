@@ -1,6 +1,5 @@
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
-
+import Button from 'ui/components/Button';
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);

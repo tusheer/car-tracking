@@ -23,7 +23,6 @@
         "@types/crypto-js": "^4.1.1",
         "@types/node": "^18.0.0",
         "@types/react": "18.0.14",
-        "@types/react-datepicker": "^4.4.1",
         "@types/react-dom": "17.0.14",
         "autoprefixer": "^10.4.4",
         "concurrently": "^7.1.0",

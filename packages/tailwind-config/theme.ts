@@ -7,21 +7,20 @@ module.exports = {
         current: 'currentColor',
         black: colors.black,
         white: colors.white,
-        gray: colors.gray,
-        'dh-green': {
-            400: '#A7E521',
-            500: '#64c900',
-            700: '#01896a',
-            800: '#00745a',
+        gray: colors.trueGray,
+        'ct-purple': {
+            800: '#8A39E1',
+            700: '#9C51E0',
+            400: '#B667F1',
         },
-        'dh-red': {
+        'ct-red': {
             500: '#FF5B43',
         },
-        'dh-yellow': {
+        'ct-yellow': {
             500: '#FBBD08',
             600: '#f2b100',
         },
-        'dh-gray': {
+        'ct-gray': {
             800: '#2a2a2a',
             700: '#63636A',
             600: '#9797A0',

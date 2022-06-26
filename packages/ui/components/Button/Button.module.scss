@@ -1,0 +1,55 @@
+.button {
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rounded {
+    border-radius: 19px;
+}
+
+.sm {
+    height: 32px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 100px;
+    padding: 0px 20px;
+}
+
+.md {
+    height: 38px;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 130px;
+    padding: 0px 20px;
+}
+
+.lg {
+    height: 46px;
+    letter-spacing: 0.65px;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 160px;
+    padding: 0px 20px;
+}
+
+.primary {
+    background-color: #9c51e0;
+    color: white;
+}
+
+.gray {
+    background-color: #f1f3f4;
+    color: #63636a;
+}
+
+.lightGrey {
+    background-color: #f1f3f4;
+    color: #9797a0;
+}
+
+.secondary {
+    background-color: white;
+    color: #9c51e0;
+}
