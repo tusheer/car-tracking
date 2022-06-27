@@ -32,7 +32,8 @@ const createUserHandler = async (req, res, next) => {
   }
 };
 
-const loginHandler = async (req, res, next) => {
+const managerLoginHandler = async (req, res, next) => {
+  console.log("Hi");
   try {
     if (req.body.email && req.body.password) {
       const user = await checkUser(req.body.email, req.body.password);
@@ -54,8 +55,9 @@ const loginHandler = async (req, res, next) => {
   }
 };
 
+
 router.post('/register', handleValidation(createUserValidate), createUserHandler);
-router.post('/login', loginHandler);
+router.post('/login/manager', managerLoginHandler);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);
 
 export default router;

@@ -1,4 +1,13 @@
 export type User = {
-    name: string;
-    age: string;
+    uid: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isActive: boolean;
+    createAt: Date;
+    updateAt: Date;
+    password: string;
+    userType: 'MANAGER' | 'OPERATOR';
+    assignedCar: [];
+    assignedCity: [];
 };

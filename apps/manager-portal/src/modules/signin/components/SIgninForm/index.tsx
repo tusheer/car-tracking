@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from 'ui/components/Button';
 import TextInput from 'ui/components/TextInput';
-
-import signinAction from '../../../../api/auth/signin';
+import useForm, { validator } from 'ui/hooks/useForm';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { setUser } from '../../../../reducers/userReducer';
 import { useAppDispatch } from '../../../../store';
+import { useLoginManagerMutation } from '../../../../api/auth';
 
 export interface IFormState {
     email: string;
@@ -14,7 +14,8 @@ export interface IFormState {
 }
 
 const Form = () => {
-    console.log('Tusher');
+    const [loginAction] = useLoginManagerMutation();
+
     const dispatch = useAppDispatch();
     const router = useRouter();
 
@@ -33,20 +34,23 @@ const Form = () => {
     });
 
     const onSubmit = async (state: IFormState) => {
-        // try {
-        //     const response = await signinAction(state);
-        //     if (response) {
-        //         dispatch(
-        //             setUser({
-        //                 user: response.result,
-        //                 token: response.authToken,
-        //             })
-        //         );
-        //         router.push('/dashboard');
-        //     }
-        // } catch (error) {
-        //     throw new Error('Invalid login');
-        // }
+        try {
+            const response = await loginAction(state);
+            if ('data' in response) {
+                dispatch(
+                    setUser({
+                        user: response.data.result,
+                        token: response.data.authToken,
+                    })
+                );
+
+                router.push('/dashboard');
+                return;
+            }
+            throw new Error('Invalid login');
+        } catch (error) {
+            throw new Error('Invalid login');
+        }
     };
 
     return (

@@ -1,10 +1,8 @@
 import dotenv from 'dotenv';
 import express, { Express } from 'express';
-import { app, connectWithDb } from './core/index';
+import { app } from './core/index';
 import { handleRequest, handleError } from './middlewares';
 import initModules from './modules/index';
-
-console.log('Tusher');
 
 dotenv.config();
 
@@ -24,7 +22,6 @@ const start = async (): Promise<void> => {
 
     app.listen(port, async () => {
       console.log('server is running on port', port);
-      await connectWithDb();
     });
   } catch (error) {
     console.log(error);

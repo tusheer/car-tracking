@@ -1,16 +1,30 @@
 import { save, findOne } from '../../common/handler';
 import { createUserValidate } from './validation';
 import bcrypt from 'bcrypt';
-import User from '../../models/User';
+import { User } from 'types';
 
-const modelName = 'User';
+const users: User[] = [
+  {
+    email: 'admin@gmail.com',
+    assignedCar: [],
+    createAt: new Date(),
+    updateAt: new Date(),
+    assignedCity: [],
+    lastName: 'Admin',
+    firstName: 'User',
+    password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+    isActive: true,
+    uid: '123456',
+    userType: 'MANAGER',
+  },
+];
 
 async function getPasswordHash(password) {
   return await bcrypt.hash(password, 10);
 }
 
 const searchOne = async (searchRequest) => {
-  const user = await findOne(modelName, searchRequest);
+  const user = await findOne(users, searchRequest);
   if (user) {
     return user;
   }
@@ -19,7 +33,7 @@ const searchOne = async (searchRequest) => {
 };
 
 const checkUser = async (email, password) => {
-  const user = await findOne(modelName, { email: email }); // status: "Active"
+  const user = await findOne(users, { email: email }); // status: "Active"
   if (user) {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
@@ -27,7 +41,7 @@ const checkUser = async (email, password) => {
         email: user.email,
         fistName: user.firstName,
         lastName: user.lastName,
-        _id: user._id,
+        uid: user.uid,
       };
     }
     return undefined;
@@ -43,7 +57,7 @@ const createUser = async (user) => {
   } else {
     const hash = await getPasswordHash(user.password);
     user.password = hash;
-    const userData = await save(user, User);
+    const userData = await save(users, user);
     return {
       email: userData.email,
       fistName: userData.firstName,

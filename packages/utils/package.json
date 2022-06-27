@@ -1,0 +1,17 @@
+{
+    "name": "utils",
+    "version": "0.0.0",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "license": "MIT",
+    "scripts": {
+        "dev": "tsc"
+    },
+    "files": [
+        "lib/*"
+    ],
+    "devDependencies": {
+        "typescript": "^4.7.4",
+        "ts-config": "*"
+    }
+}

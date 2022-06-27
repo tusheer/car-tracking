@@ -11,6 +11,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
+                    <meta name="application-name" content="Car Tracking " />
                     <link
                         rel="icon"
                         type="image/png"

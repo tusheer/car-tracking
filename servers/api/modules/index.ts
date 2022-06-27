@@ -8,6 +8,7 @@ const initModules = async (app: Express): Promise<Express> => {
     moduleNames.map(async (moduleName) => {
       const stat = await fs.promises.lstat(`${rootPath}/${moduleName}`);
       if (stat.isDirectory()) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const module = require(`./${moduleName}`);
         if (module.default) {
           await module.default(app);

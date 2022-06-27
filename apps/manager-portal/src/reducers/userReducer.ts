@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUser } from '../types/User';
-import { getToken, removeToken, setToken } from '../libs/authClient';
+import { getToken, removeToken, setToken } from '../utils/authClient';
+import { User } from 'types';
 
 interface IState {
-    user: IUser | null;
+    user: Omit<User, 'assignedCar' | 'assignedCity'> | null;
     token: string | null;
 }
 
@@ -16,12 +16,12 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser(state, action: PayloadAction<IState>) {
-            setToken(action.payload.token as string);
+        setUser(state: IState, action: PayloadAction<IState>) {
+            setToken({ token: action.payload.token || '' });
             state.user = action.payload.user;
             state.token = action.payload.token;
         },
-        logoutUser(state) {
+        logoutUser(state: IState) {
             removeToken();
             state.user = null;
             state.token = null;

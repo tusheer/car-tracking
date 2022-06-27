@@ -1,4 +1,4 @@
-function randomId(length: number) {
+export function randomId(length: number) {
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var result = '';
     for (var i = 0; i < length; i++) {
@@ -6,5 +6,3 @@ function randomId(length: number) {
     }
     return result;
 }
-
-export default randomId;
