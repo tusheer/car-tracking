@@ -1,0 +1,16 @@
+.root {
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid rgb(243, 239, 239);
+    }
+    td {
+        padding: 16px 30px;
+    }
+
+    th {
+        background-color: #b567f122;
+        color: #9c51e0;
+        padding: 16px 30px;
+    }
+}

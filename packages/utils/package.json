@@ -1,15 +1,20 @@
 {
     "name": "utils",
     "version": "0.0.0",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "main": "lib/index",
+    "types": "lib/index",
     "license": "MIT",
+    "private": true,
     "scripts": {
         "dev": "tsc"
     },
     "files": [
-        "lib/*"
+        "lib"
     ],
+    "publishConfig": {
+        "directory": "lib",
+        "access": "public"
+    },
     "devDependencies": {
         "typescript": "^4.7.4",
         "ts-config": "*"

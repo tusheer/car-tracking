@@ -1,4 +1,2 @@
-import { randomId } from './randomId';
-import { isStringMatched } from './isStringMatched';
-
-export { randomId, isStringMatched };
+export * from './randomId';
+export * from './isStringMatched';

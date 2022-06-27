@@ -33,7 +33,6 @@ const createUserHandler = async (req, res, next) => {
 };
 
 const managerLoginHandler = async (req, res, next) => {
-  console.log("Hi");
   try {
     if (req.body.email && req.body.password) {
       const user = await checkUser(req.body.email, req.body.password);
@@ -54,7 +53,6 @@ const managerLoginHandler = async (req, res, next) => {
     next(error);
   }
 };
-
 
 router.post('/register', handleValidation(createUserValidate), createUserHandler);
 router.post('/login/manager', managerLoginHandler);

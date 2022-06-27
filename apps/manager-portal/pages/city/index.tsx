@@ -7,7 +7,7 @@ const City = () => {
 };
 
 City.getLayout = (page: ReactNode) => {
-    return <DashboardLayout>{page}</DashboardLayout>;
+    return <DashboardLayout title="All Cities">{page}</DashboardLayout>;
 };
 
 export default City;
