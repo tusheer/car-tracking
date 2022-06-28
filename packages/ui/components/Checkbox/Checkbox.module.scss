@@ -1,0 +1,47 @@
+.checkbox .checkmarkspan::after {
+    content: '';
+    position: absolute;
+    display: none;
+    width: 6px;
+    height: 10px;
+    top: 50%;
+    left: 29%;
+    transition: 0.5s all;
+    border-color: #9c51e0;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg) translate(-50%, -50%);
+    -ms-transform: rotate(45deg) translate(-50%, -50%);
+    transform: rotate(45deg) translate(-50%, -50%);
+}
+
+.checkmarkspan {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    border: 1.2px solid #9c51e0;
+    background-color: #fffcfc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked ~ .checkmarkspan {
+    border: solid 1.2px #9c51e0 !important;
+    background-color: #e4d8ef !important;
+}
+.checkbox input:checked ~ .checkmarkspan::after {
+    display: block;
+    animation-name: Checkanimation;
+    animation-duration: 0.3s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes Checkanimation {
+    0% {
+        opacity: 0;
+        transform: rotate(180deg) translate(-50%, -50%) scale(0);
+    }
+    100% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}

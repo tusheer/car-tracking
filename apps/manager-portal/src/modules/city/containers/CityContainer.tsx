@@ -10,6 +10,7 @@ import CreateCityModal from '../components/CreateCityModal';
 import { EditIcon, TrashIcon } from 'ui/icons';
 import toast, { Toaster } from 'react-hot-toast';
 import { City } from 'types';
+import Link from 'next/link';
 
 const CityContainer = () => {
     const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -70,7 +71,11 @@ const CityContainer = () => {
                                 ? citiesData.map((data) => {
                                       return {
                                           name: data.name,
-                                          uid: data.uid,
+                                          uid: (
+                                              <Link href={`/city/${data.uid}/view`}>
+                                                  <a className="text-ct-purple-700 underline">{data.uid}</a>
+                                              </Link>
+                                          ),
                                           country: data.country,
                                           createAt: getShortDate(data.createAt),
                                           car: data.assignedCar.length,

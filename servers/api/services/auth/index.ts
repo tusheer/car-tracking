@@ -6,7 +6,6 @@ import { User } from 'types';
 const users: User[] = [
   {
     email: 'admin@gmail.com',
-    assignedCar: [],
     createAt: new Date(),
     updateAt: new Date(),
     assignedCity: [],

@@ -9,7 +9,7 @@ import { CrossIcon, PlusIcon } from 'ui/icons';
 import { imageUpload } from '../../../../api/upload';
 import FileUploadInput from 'ui/components/FileUploadInput';
 import RenderUploadedFileThumbs from 'ui/components/FileThumb';
-import { useCreateCityMutation } from '../../../../api/city';
+import { useCreateCityMutation, useUpdateCityMutation } from '../../../../api/city';
 import toast, { Toaster } from 'react-hot-toast';
 
 interface ICreateCityModal {
@@ -35,6 +35,7 @@ const initialState = {
 
 const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose, editMode = false, city = null }) => {
     const [createCity] = useCreateCityMutation();
+    const [updateCity] = useUpdateCityMutation();
     const [previousImage, setPreviousImage] = useState<[ImageType] | never[]>([]);
 
     const onSubmit = async () => {
@@ -43,8 +44,7 @@ const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose, editMode =
             return;
         }
         const uploadedFiles = await onUpload();
-
-        const reponse = await createCity({
+        const payload = {
             ...state,
             latitude: Number(state.latitude),
             longitude: Number(state.longitude),
@@ -53,12 +53,21 @@ const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose, editMode =
                 url: uploadedFiles[0].url,
                 name: uploadedFiles[0].name,
             },
-        });
+        };
 
+        if (editMode && city) {
+            const updatedreponse = await updateCity({ ...payload, uid: city.uid });
+            if ('data' in updatedreponse) {
+                handleClose();
+                toast.success('City updated!');
+                return;
+            }
+        }
+
+        const reponse = await createCity(payload);
         if ('data' in reponse) {
             handleClose();
             toast.success('City created!');
-
             return;
         }
 
@@ -191,7 +200,9 @@ const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose, editMode =
                         </div>
 
                         <div className="flex justify-end">
-                            <Button className="mt-12">Create</Button>
+                            <Button className="mt-12">
+                                <> {editMode ? 'Update' : 'Create'}</>
+                            </Button>
                         </div>
                     </form>
                 </div>

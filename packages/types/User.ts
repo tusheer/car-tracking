@@ -8,6 +8,5 @@ export type User = {
     updateAt: Date;
     password: string;
     userType: 'MANAGER' | 'OPERATOR';
-    assignedCar: [];
     assignedCity: [];
 };

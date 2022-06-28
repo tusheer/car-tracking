@@ -1,7 +1,15 @@
 import express from 'express';
 import { handleValidation } from '../../middlewares/index';
-import { BadRequest } from '../../common/errors';
-import { getAllCity, createCity, createValidate, deleteCity, updateCity } from '../../services/city';
+import {
+  getAllCity,
+  createCity,
+  createValidate,
+  deleteCity,
+  updateCity,
+  getCity,
+  assignCar,
+  removeAssignCar,
+} from '../../services/city';
 import dotenv from 'dotenv';
 import randomId from '../../utils/randomId';
 
@@ -10,8 +18,17 @@ dotenv.config();
 
 const getCitiesHandler = async (req, res, next) => {
   try {
-    const user = await getAllCity();
-    res.status(200).send(user);
+    const cities = await getAllCity();
+    res.status(200).send(cities);
+  } catch (error) {
+    next(error);
+  }
+};
+const getCityHandler = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const city = await getCity(uid);
+    res.status(200).send(city);
   } catch (error) {
     next(error);
   }
@@ -53,9 +70,33 @@ const updateCityHander = async (req, res, next) => {
   }
 };
 
+const assignCarHander = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const city = req.body;
+    const cityData = await assignCar(uid, city);
+    res.status(200).send(cityData);
+  } catch (error) {
+    next(error);
+  }
+};
+const handleDeleteAssignCar = async (req, res, next) => {
+  try {
+    console.log(req.params);
+    const { cityUid, carUid } = req.params;
+    const cityData = await removeAssignCar(cityUid, carUid);
+    res.status(200).send(cityData);
+  } catch (error) {
+    next(error);
+  }
+};
+
 router.get('/', getCitiesHandler);
+router.get('/:uid', getCityHandler);
 router.post('/create', handleValidation(createValidate), createCityHander);
-router.post('/edit/:uid', handleValidation(createValidate), updateCityHander);
+router.post('/:uid/assign/car', assignCarHander);
+router.delete('/:cityUid/assign/car/:carUid', handleDeleteAssignCar);
+router.put('/edit/:uid', handleValidation(createValidate), updateCityHander);
 router.delete('/:uid', deleteCityHander);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);
 

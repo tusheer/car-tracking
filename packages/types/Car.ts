@@ -1,16 +1,12 @@
-import { Car } from './Car';
 import { ImageType } from './Image';
 
-export type City = {
+export type Car = {
     uid: string;
-    name: string;
+    modelName: string;
+    numberPlate: string;
     createAt: Date;
     updateAt: Date;
-    assignedCar: Car[];
-    assignedOperator: [];
     longitude: number;
     latitude: number;
-    zoomLavel: number;
-    country: string;
     image: ImageType;
 };

@@ -4,7 +4,7 @@ import { NotFound } from '../../common/errors';
 import { City } from 'types';
 import randomId from '../../utils/randomId';
 
-const city: City[] = [
+const cities: City[] = [
   {
     name: 'Dhaka',
     zoomLavel: 4,
@@ -24,37 +24,79 @@ const city: City[] = [
 ];
 
 const getAllCity = async () => {
-  return city.sort((a, b) => new Date(b.createAt).valueOf() - new Date(a.createAt).valueOf());
+  return cities.sort((a, b) => new Date(b.createAt).valueOf() - new Date(a.createAt).valueOf());
 };
-
-const createCity = async (payload) => {
-  city.push(payload);
-  return payload;
-};
-const deleteCity = async (uid) => {
-  const findIndex = city.findIndex((data) => data.uid === uid);
+const getCity = async (uid) => {
+  const findIndex = cities.findIndex((data) => data.uid === uid);
   if (findIndex < 0) {
     return new NotFound('City Not found');
   }
 
-  const removeItem = city.splice(findIndex, 1);
+  return cities[findIndex];
+};
+
+const createCity = async (payload) => {
+  cities.push(payload);
+  return payload;
+};
+const deleteCity = async (uid) => {
+  const findIndex = cities.findIndex((data) => data.uid === uid);
+  if (findIndex < 0) {
+    return new NotFound('City Not found');
+  }
+
+  const removeItem = cities.splice(findIndex, 1);
   return removeItem;
 };
 
 const updateCity = async (uid, payload) => {
-  const findIndex = city.findIndex((data) => data.uid === uid);
+  const findIndex = cities.findIndex((data) => data.uid === uid);
   if (findIndex < 0) {
     return new NotFound('City Not found');
   }
 
   const _city = {
-    ...city[findIndex],
+    ...cities[findIndex],
     ...payload,
   };
 
-  city[findIndex] = _city;
+  cities[findIndex] = _city;
 
   return _city;
 };
+const assignCar = async (uid, payload) => {
+  const findIndex = cities.findIndex((data) => data.uid === uid);
+  if (findIndex < 0) {
+    return new NotFound('City Not found');
+  }
 
-export { getAllCity, createCity, createValidate, deleteCity, updateCity };
+  const _city = {
+    ...cities[findIndex],
+    assignedCar: payload,
+  };
+
+  cities[findIndex] = _city;
+
+  return _city;
+};
+const removeAssignCar = async (cityUid, carUid) => {
+  const findCityIndex = cities.findIndex((data) => data.uid === cityUid);
+
+  if (findCityIndex < 0) {
+    return new NotFound('City Not found');
+  }
+
+  const assignedCarsList = cities[findCityIndex].assignedCar;
+
+  const findCarIndex = assignedCarsList.findIndex((car) => car.uid === carUid);
+
+  console.log(findCarIndex);
+
+  assignedCarsList.splice(findCarIndex, 1);
+
+  cities[findCityIndex].assignedCar = assignedCarsList;
+
+  return cities[findCityIndex];
+};
+
+export { getAllCity, createCity, createValidate, deleteCity, updateCity, getCity, assignCar, removeAssignCar };
