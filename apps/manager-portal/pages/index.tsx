@@ -1,5 +1,7 @@
 import SigninContainer from '../src/modules/signin/containers/SigninContainer';
 
-export default function Signin() {
+const index = () => {
     return <SigninContainer />;
-}
+};
+
+export default index;

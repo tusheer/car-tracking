@@ -4,7 +4,7 @@ import styles from './Table.module.scss';
 
 function Table<T extends string = string>({ columns, data }: ITable<T>) {
     return (
-        <table className={`w-full ${styles.root}`}>
+        <table className={`w-full  min-w-full overflow-x-auto ${styles.root}`}>
             <thead>
                 <tr>
                     {columns.map((col) => (

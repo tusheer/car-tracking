@@ -6,14 +6,16 @@ import { getToken } from '../utils/authClient';
 const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:4000/api',
+        baseUrl: process.env.NEXT_PUBLIC_API_URL
+            ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+            : 'http://localhost:4000/api',
         prepareHeaders(headers) {
             const token: string = getToken() || '';
             headers.set('Authorization', token);
             return headers;
         },
     }),
-
+    tagTypes: ['City'],
     endpoints: () => ({}),
 });
 

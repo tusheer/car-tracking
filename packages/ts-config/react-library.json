@@ -3,7 +3,7 @@
     "display": "React Library",
     "extends": "./nextjs.json",
     "compilerOptions": {
-        "lib": ["ES2015"],
+        "lib": ["ES2015", "DOM","dom","dom.iterable"],
         "module": "ESNext",
         "target": "ES6",
         "jsx": "react-jsx",

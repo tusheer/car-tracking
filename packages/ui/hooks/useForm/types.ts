@@ -24,6 +24,7 @@ export interface IUserFormReturn<P> {
         name: keyof P;
         onChange: (event: any) => void;
     };
+    onReset: () => void;
     state: P;
     errors: Erros<P>;
     setState: Dispatch<SetStateAction<P>>;

@@ -6,7 +6,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "dev": "tsc"
+        "dev": "tsc -w"
     },
     "files": [
         "lib"

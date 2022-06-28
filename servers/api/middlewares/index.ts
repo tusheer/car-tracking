@@ -72,7 +72,7 @@ const authenticateRequest = async (req, res, next) => {
 
 function avatarUpload(req, res, next) {
   const upload = uploader(
-    'avatars',
+    'images',
     ['image/jpeg', 'image/jpg', 'image/png'],
     100000000,
     'Only .jpg, jpeg or .png format allowed!'

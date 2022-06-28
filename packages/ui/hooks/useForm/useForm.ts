@@ -64,12 +64,17 @@ const useForm = <P>({ onSubmit, formState }: IuseFrom<P>): IUserFormReturn<P> =>
         };
     };
 
+    const onReset = () => {
+        setState(formState);
+    };
+
     return {
         errors,
         handleSubmit,
         getInputProps,
         state,
         setState,
+        onReset,
     };
 };
 

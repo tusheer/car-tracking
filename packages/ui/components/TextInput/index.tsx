@@ -1,4 +1,4 @@
-import PassEyeIcon from '../../icons/PassEyeIcon';
+import { PassEyeIcon } from '../../icons';
 import React, { useState, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import styles from './TextInput.module.scss';

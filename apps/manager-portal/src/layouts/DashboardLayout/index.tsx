@@ -43,7 +43,7 @@ const DashboardLayout: React.FC<Props> = ({ children, title }) => {
                     },
                 ]}
                 renderLinks={(element, to) => (
-                    <Link href={to}>
+                    <Link key={to} href={to}>
                         <a>{element}</a>
                     </Link>
                 )}
