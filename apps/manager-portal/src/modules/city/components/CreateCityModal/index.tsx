@@ -1,5 +1,5 @@
-import React from 'react';
-import { City } from 'types';
+import React, { useEffect, useState } from 'react';
+import { City, ImageType } from 'types';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/Modal';
 import TextInput from 'ui/components/TextInput';
@@ -15,6 +15,8 @@ import toast, { Toaster } from 'react-hot-toast';
 interface ICreateCityModal {
     open: boolean;
     onClose: () => void;
+    editMode?: boolean;
+    city?: City | null;
 }
 
 type FormState = Pick<City, 'country' | 'name'> & {
@@ -23,8 +25,17 @@ type FormState = Pick<City, 'country' | 'name'> & {
     zoomLavel: string;
 };
 
-const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose }) => {
+const initialState = {
+    country: '',
+    latitude: '',
+    longitude: '',
+    zoomLavel: '',
+    name: '',
+};
+
+const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose, editMode = false, city = null }) => {
     const [createCity] = useCreateCityMutation();
+    const [previousImage, setPreviousImage] = useState<[ImageType] | never[]>([]);
 
     const onSubmit = async () => {
         if (!files.length) {
@@ -45,9 +56,7 @@ const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose }) => {
         });
 
         if ('data' in reponse) {
-            onClose();
-            clear();
-            onReset();
+            handleClose();
             toast.success('City created!');
 
             return;
@@ -56,30 +65,47 @@ const CreateCityModal: React.FC<ICreateCityModal> = ({ open, onClose }) => {
         toast.error('Create action filed, try again');
     };
 
-    const { handleSubmit, errors, state, getInputProps, onReset } = useForm<FormState>({
-        formState: {
-            country: '',
-            latitude: '',
-            longitude: '',
-            zoomLavel: '',
-            name: '',
-        },
+    const { handleSubmit, errors, state, getInputProps, onReset, setState } = useForm<FormState>({
+        formState: initialState,
         onSubmit: onSubmit,
     });
 
     const { files, onChange, onRemove, onUpload, clear } = useFileUpload({
         uploadEvent: imageUpload,
-        previousUploadedFiles: [],
+        previousUploadedFiles: previousImage,
         multiple: false,
     });
 
+    useEffect(() => {
+        if (city && editMode) {
+            setState({
+                country: city.country,
+                latitude: city.latitude.toString(),
+                longitude: city.longitude.toString(),
+                name: city.name,
+                zoomLavel: city.zoomLavel.toString(),
+            });
+            setPreviousImage([city.image]);
+        } else {
+            setState(initialState);
+            setPreviousImage([]);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [city, editMode]);
+
+    const handleClose = () => {
+        clear();
+        onReset();
+        onClose();
+    };
+
     return (
-        <Modal className="max-w-3xl  rounded-md" open={open} onClose={onClose}>
+        <Modal className="max-w-3xl  rounded-md" open={open} onClose={handleClose}>
             <section className="w-full h-full">
                 <header className="flex justify-between py-7 px-7 items-center">
                     <h2 className="text-xl font-semibold">Create car</h2>
 
-                    <span onClick={onClose}>
+                    <span onClick={handleClose}>
                         <CrossIcon className="h-7 w-7 cursor-pointer" />
                     </span>
                 </header>

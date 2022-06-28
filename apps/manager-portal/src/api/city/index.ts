@@ -22,7 +22,14 @@ export const cityApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['City'],
         }),
+        deleteCity: build.mutation<City, string>({
+            query: (payload) => ({
+                url: `/city/${payload}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['City'],
+        }),
     }),
 });
 
-export const { useGetAllCitiesQuery, useCreateCityMutation } = cityApi;
+export const { useGetAllCitiesQuery, useCreateCityMutation, useDeleteCityMutation } = cityApi;

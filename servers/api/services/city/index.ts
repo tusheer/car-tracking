@@ -1,5 +1,3 @@
-import {} from '../../common/handler';
-
 import { createValidate } from './validation';
 
 import { NotFound } from '../../common/errors';
@@ -33,5 +31,30 @@ const createCity = async (payload) => {
   city.push(payload);
   return payload;
 };
+const deleteCity = async (uid) => {
+  const findIndex = city.findIndex((data) => data.uid === uid);
+  if (findIndex < 0) {
+    return new NotFound('City Not found');
+  }
 
-export { getAllCity, createCity, createValidate };
+  const removeItem = city.splice(findIndex, 1);
+  return removeItem;
+};
+
+const updateCity = async (uid, payload) => {
+  const findIndex = city.findIndex((data) => data.uid === uid);
+  if (findIndex < 0) {
+    return new NotFound('City Not found');
+  }
+
+  const _city = {
+    ...city[findIndex],
+    ...payload,
+  };
+
+  city[findIndex] = _city;
+
+  return _city;
+};
+
+export { getAllCity, createCity, createValidate, deleteCity, updateCity };
