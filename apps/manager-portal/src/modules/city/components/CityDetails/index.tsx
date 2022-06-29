@@ -20,10 +20,12 @@ const CityDetails: React.FC<City> = ({
             <div className="w-9/12">
                 <NoSSRMap
                     icon="/static/assets/images/car.png"
+                    operatorIcon="/static/assets/images/user.png"
                     zoomLavel={zoomLavel}
                     assignedCar={assignedCar}
                     latitude={latitude}
                     longitude={longitude}
+                    assignedOperator={assignedOperator}
                 />
             </div>
             <div className="w-3/12 relative">

@@ -8,4 +8,6 @@ export type User = {
     updateAt: Date;
     password: string;
     userType: 'MANAGER' | 'OPERATOR';
+    longitude?: number;
+    latitude?: number;
 };

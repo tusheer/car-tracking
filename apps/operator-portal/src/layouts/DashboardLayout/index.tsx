@@ -25,12 +25,12 @@ const DashboardLayout: React.FC<Props> = ({ children, title }) => {
             <Sidebar
                 links={[
                     {
-                        name: 'City',
+                        name: 'Navigation',
                         icon: (active) => (
                             <CityIcon className={`w-6 h-6 ${active ? 'text-ct-purple-700' : 'text-black'}`} />
                         ),
-                        link: '/city',
-                        isActive: isStringMatched(router.pathname, 'city'),
+                        link: '/navigation',
+                        isActive: isStringMatched(router.pathname, 'navigation'),
                     },
                 ]}
                 renderLinks={(element, to) => (

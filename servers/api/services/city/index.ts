@@ -8,8 +8,36 @@ const cities: City[] = [
   {
     name: 'Dhaka',
     zoomLavel: 10,
-    assignedCar: [],
-    assignedOperator: [],
+    assignedCar: [
+      {
+        numberPlate: 'DT-23323',
+        modelName: 'BMW-52',
+        uid: 'PTPTPTP',
+        latitude: 23.8479,
+        longitude: 90.2576,
+        createAt: new Date(),
+        updateAt: new Date(),
+        image: {
+          url: 'https://media.istockphoto.com/photos/red-generic-sedan-car-isolated-on-white-background-3d-illustration-picture-id1189903200?k=20&m=1189903200&s=612x612&w=0&h=L2bus_XVwK5_yXI08X6RaprdFKF1U9YjpN_pVYPgS0o=',
+          name: 'Car',
+        },
+      },
+    ],
+    assignedOperator: [
+      {
+        email: 'operator@gmail.com',
+        createAt: new Date(),
+        updateAt: new Date(),
+        lastName: '1',
+        firstName: 'User',
+        password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+        isActive: true,
+        uid: '123456',
+        latitude: 23.8007,
+        longitude: 90.4262,
+        userType: 'OPERATOR',
+      },
+    ],
     country: 'Bangladesh',
     uid: randomId(6),
     latitude: 23.777176,

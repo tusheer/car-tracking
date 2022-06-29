@@ -14,6 +14,8 @@ const users: User[] = [
     password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
     isActive: true,
     uid: '123456',
+    latitude: 23.8007,
+    longitude: 90.4262,
     userType: 'OPERATOR',
   },
   {
@@ -24,6 +26,8 @@ const users: User[] = [
     firstName: 'User',
     password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
     isActive: true,
+    latitude: 23.8004,
+    longitude: 90.4261,
     uid: randomId(6),
     userType: 'OPERATOR',
   },
@@ -33,6 +37,8 @@ const users: User[] = [
     updateAt: new Date(),
     lastName: '3',
     firstName: 'User',
+    latitude: 23.801,
+    longitude: 90.423,
     password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
     isActive: true,
     uid: randomId(6),
@@ -42,6 +48,8 @@ const users: User[] = [
     email: 'admin4@gmail.com',
     createAt: new Date(),
     updateAt: new Date(),
+    latitude: 23.7004,
+    longitude: 90.4261,
     lastName: '4',
     firstName: 'User',
     password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
@@ -51,6 +59,7 @@ const users: User[] = [
   },
   {
     email: 'admin@gmail.com',
+
     createAt: new Date(),
     updateAt: new Date(),
     lastName: 'User',

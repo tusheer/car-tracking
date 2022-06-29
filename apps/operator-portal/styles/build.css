@@ -831,6 +831,9 @@ video {
 .border-l-4 {
   border-left-width: 4px;
 }
+.border-r {
+  border-right-width: 1px;
+}
 .border-dashed {
   border-style: dashed;
 }
@@ -844,6 +847,10 @@ video {
 }
 .border-transparent {
   border-color: transparent;
+}
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 .bg-\[\#f8f8f8\] {
   --tw-bg-opacity: 1;
@@ -946,6 +953,12 @@ video {
 }
 .pt-2 {
   padding-top: 0.5rem;
+}
+.pr-3 {
+  padding-right: 0.75rem;
+}
+.pl-3 {
+  padding-left: 0.75rem;
 }
 .text-center {
   text-align: center;

@@ -4,14 +4,20 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { City } from 'types';
 
-interface IMap extends Pick<City, 'assignedCar' | 'latitude' | 'longitude' | 'zoomLavel'> {
+interface IMap extends Pick<City, 'assignedCar' | 'latitude' | 'longitude' | 'zoomLavel' | 'assignedOperator'> {
     icon: string;
+
+    operatorIcon: string;
 }
 
-const Map: React.FC<IMap> = ({ zoomLavel, latitude, assignedCar, longitude, icon }) => {
+const Map: React.FC<IMap> = ({ zoomLavel, latitude, assignedCar, longitude, icon, assignedOperator, operatorIcon }) => {
     const CarIcon = L.icon({
         iconUrl: icon,
         iconSize: [60, 60],
+    });
+    const OperatorIcon = L.icon({
+        iconUrl: operatorIcon,
+        iconSize: [40, 40],
     });
 
     return (
@@ -43,6 +49,28 @@ const Map: React.FC<IMap> = ({ zoomLavel, latitude, assignedCar, longitude, icon
                                     </h5>
                                     <h5 className="text-lg ">
                                         Number Plate: <b>{car.numberPlate}</b>
+                                    </h5>
+                                </div>
+                            </div>
+                        </Popup>
+                    </Marker>
+                );
+            })}
+            {assignedOperator.map((operator) => {
+                return (
+                    <Marker
+                        icon={OperatorIcon}
+                        key={operator.uid}
+                        position={[operator.latitude || 0, operator.longitude || 0]}
+                    >
+                        <Popup>
+                            <div className="flex gap-3">
+                                <div>
+                                    <h5 className="text-lg ">
+                                        Name: <b>{operator.firstName + ' ' + operator.lastName}</b>
+                                    </h5>
+                                    <h5 className="text-lg ">
+                                        ID: <b>{operator.uid}</b>
                                     </h5>
                                 </div>
                             </div>
