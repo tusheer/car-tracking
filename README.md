@@ -45,3 +45,12 @@ car-tracking
 └──
 README.md
 ```
+
+## Tech stack
+
+Framework or Library: Typescript, NextJS, React
+Css Utility Framework : TailwindCSS
+Store : Redux
+Api call and cache : Redux RTK
+Map : Leafletjs
+Backend : NodeJS, ExpressJS
