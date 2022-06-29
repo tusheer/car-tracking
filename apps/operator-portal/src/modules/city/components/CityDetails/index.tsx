@@ -1,20 +1,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { City } from 'types';
-import { CarIcon, UserIcon } from 'ui/icons';
+import { CarIcon } from 'ui/icons';
 
 const NoSSRMap = dynamic(() => import('ui/components/Map'), { ssr: false });
 
-const CityDetails: React.FC<City> = ({
-    country,
-    image,
-    assignedCar,
-    name,
-    zoomLavel,
-    latitude,
-    longitude,
-    assignedOperator,
-}) => {
+const CityDetails: React.FC<City> = ({ country, image, assignedCar, name, zoomLavel, latitude, longitude }) => {
     return (
         <section className="mt-7 flex bg-white shadow-xl">
             <div className="w-9/12">
@@ -30,16 +21,10 @@ const CityDetails: React.FC<City> = ({
                 <img className="absolute object-cover min-w-full min-h-full" src={image.url} alt={image.name} />
                 <div className="bg-black bg-opacity-30 relative h-full w-full p-5 flex flex-col justify-end gap-3 ">
                     <div className=" flex">
-                        <div className="flex  gap-3 items-center pr-3 border-r border-white">
+                        <div className="flex  gap-3 items-center">
                             <div className="text-lg   font-semibold text-white">{assignedCar.length}</div>
                             <div className="h-7 w-7 rounded-full flex justify-center items-center bg-ct-purple-700">
                                 <CarIcon className="w-4 h-4 text-white stroke-current" />
-                            </div>
-                        </div>
-                        <div className="flex gap-3 items-center pl-3 ">
-                            <div className="text-lg font-semibold text-white">{assignedOperator.length}</div>
-                            <div className="h-7 w-7 rounded-full flex justify-center items-center bg-ct-purple-700">
-                                <UserIcon className="w-4 h-4 text-white stroke-current" />
                             </div>
                         </div>
                     </div>
