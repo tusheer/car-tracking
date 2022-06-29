@@ -11,9 +11,11 @@ import {
   removeAssignCar,
   assignOperator,
   removeAssignOperator,
+  getOperatorAssignedAllCity,
 } from '../../services/city';
 import dotenv from 'dotenv';
 import randomId from '../../utils/randomId';
+import { authenticateRequest } from '../../middlewares/index';
 
 const router = express.Router();
 dotenv.config();
@@ -21,6 +23,14 @@ dotenv.config();
 const getCitiesHandler = async (req, res, next) => {
   try {
     const cities = await getAllCity();
+    res.status(200).send(cities);
+  } catch (error) {
+    next(error);
+  }
+};
+const getOperatorsAssignCitiesHandler = async (req, res, next) => {
+  try {
+    const cities = await getOperatorAssignedAllCity(req.user.uid);
     res.status(200).send(cities);
   } catch (error) {
     next(error);
@@ -111,15 +121,16 @@ const handleDeleteAssignOperator = async (req, res, next) => {
   }
 };
 
-router.get('/', getCitiesHandler);
-router.get('/:uid', getCityHandler);
-router.post('/create', handleValidation(createValidate), createCityHander);
-router.post('/:uid/assign/car', assignCarHander);
-router.post('/:uid/assign/operator', assignOperatorHander);
-router.delete('/:cityUid/assign/car/:carUid', handleDeleteAssignCar);
-router.delete('/:cityUid/assign/operator/:operatorUid', handleDeleteAssignOperator);
-router.put('/edit/:uid', handleValidation(createValidate), updateCityHander);
-router.delete('/:uid', deleteCityHander);
+router.get('/', authenticateRequest, getCitiesHandler);
+router.get('/operator', authenticateRequest, getOperatorsAssignCitiesHandler);
+router.get('/:uid', authenticateRequest, getCityHandler);
+router.post('/create', authenticateRequest, handleValidation(createValidate), createCityHander);
+router.post('/:uid/assign/car', authenticateRequest, assignCarHander);
+router.post('/:uid/assign/operator', authenticateRequest, assignOperatorHander);
+router.delete('/:cityUid/assign/car/:carUid', authenticateRequest, handleDeleteAssignCar);
+router.delete('/:cityUid/assign/operator/:operatorUid', authenticateRequest, handleDeleteAssignOperator);
+router.put('/edit/:uid', authenticateRequest, handleValidation(createValidate), updateCityHander);
+router.delete('/:uid', authenticateRequest, deleteCityHander);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);
 
 export default router;

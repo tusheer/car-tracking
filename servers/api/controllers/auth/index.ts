@@ -53,6 +53,27 @@ const managerLoginHandler = async (req, res, next) => {
     next(error);
   }
 };
+const operatorLoginHandler = async (req, res, next) => {
+  try {
+    if (req.body.email && req.body.password) {
+      const user = await checkUser(req.body.email, req.body.password);
+      if (user && user.userType === 'OPERATOR') {
+        res.status(200).send({
+          status: 'ok',
+          result: {
+            ...user,
+          },
+          authToken: createToken({ ...user }),
+        });
+        return;
+      } else {
+        throw new BadRequest('Invalid email or password ');
+      }
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 const getAllOperatorsHandler = async (req, res, next) => {
   try {
@@ -65,6 +86,7 @@ const getAllOperatorsHandler = async (req, res, next) => {
 
 router.post('/register', handleValidation(createUserValidate), createUserHandler);
 router.post('/login/manager', managerLoginHandler);
+router.post('/login/operator', operatorLoginHandler);
 router.get('/user/operators', getAllOperatorsHandler);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);
 

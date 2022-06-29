@@ -9,7 +9,7 @@ import { User } from 'types';
 import jwt from 'jsonwebtoken';
 
 type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode;
+    getLayout?: (page: ReactElement, pageProps: AppProps) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -19,7 +19,7 @@ type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page);
 
-    return <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>;
+    return <Provider store={store}>{getLayout(<Component {...pageProps} />, { ...pageProps })}</Provider>;
 }
 
 export const withSession = (

@@ -12,11 +12,7 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <meta name="application-name" content="Car Tracking " />
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        href={`${process.env.HOST_URL}/static/assets/icons/icon-72x72.png`}
-                    />
+                    <link rel="icon" type="image/png" href={`/static/assets/images/car.png`} />
                     <link
                         rel="prefetch"
                         href={`${process.env.HOST_URL}/static/assets/fonts/sf-ui-display-black.otf`}

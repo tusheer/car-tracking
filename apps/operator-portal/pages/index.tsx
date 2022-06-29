@@ -1,12 +1,7 @@
-import Button from 'ui/components/Button';
-import TextInput from 'ui/components/TextInput';
+import SigninContainer from '../src/modules/signin/containers/SigninContainer';
 
-export default function Docs() {
-    console.log('tusher');
-    return (
-        <div>
-            <h1>Docs</h1>
-            <Button>Button</Button>
-        </div>
-    );
-}
+const index = () => {
+    return <SigninContainer />;
+};
+
+export default index;

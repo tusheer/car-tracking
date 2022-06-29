@@ -85,6 +85,7 @@ const checkUser = async (email, password) => {
         fistName: user.firstName,
         lastName: user.lastName,
         uid: user.uid,
+        userType: user.userType,
       };
     }
     return undefined;

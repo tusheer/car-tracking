@@ -26,6 +26,13 @@ const cities: City[] = [
 const getAllCity = async () => {
   return cities.sort((a, b) => new Date(b.createAt).valueOf() - new Date(a.createAt).valueOf());
 };
+const getOperatorAssignedAllCity = async (operatorUid) => {
+  return cities
+    .sort((a, b) => new Date(b.createAt).valueOf() - new Date(a.createAt).valueOf())
+    .filter((city) => {
+      return city.assignedOperator.find((operator) => operator.uid === operatorUid);
+    });
+};
 const getCity = async (uid) => {
   const findIndex = cities.findIndex((data) => data.uid === uid);
   if (findIndex < 0) {
@@ -140,4 +147,5 @@ export {
   removeAssignCar,
   assignOperator,
   removeAssignOperator,
+  getOperatorAssignedAllCity,
 };
