@@ -33,7 +33,7 @@ const CityContainer = () => {
                                       return {
                                           name: data.name,
                                           uid: (
-                                              <Link href={`/city/${data.uid}/view`}>
+                                              <Link href={`/navigation/${data.uid}/view`}>
                                                   <a className="text-ct-purple-700 underline">{data.uid}</a>
                                               </Link>
                                           ),

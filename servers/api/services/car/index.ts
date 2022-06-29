@@ -5,7 +5,7 @@ const cars: Car[] = [
   {
     numberPlate: 'DT-23323',
     modelName: 'BMW-52',
-    uid: randomId(6),
+    uid: 'PTPTPTP',
     latitude: 23.8479,
     longitude: 90.2576,
     createAt: new Date(),

@@ -44,7 +44,7 @@ const Form = () => {
                     })
                 );
 
-                router.push('/city');
+                router.push('/navigation');
                 return;
             }
             throw new Error('Invalid login');
