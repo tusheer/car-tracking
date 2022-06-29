@@ -12,7 +12,13 @@ export const authApi = baseApi.injectEndpoints({
                 body,
             }),
         }),
+        getAllOperators: build.query<User[], void>({
+            query: () => ({
+                url: '/auth/user/operators',
+                method: 'GET',
+            }),
+        }),
     }),
 });
 
-export const { useLoginManagerMutation } = authApi;
+export const { useLoginManagerMutation, useGetAllOperatorsQuery } = authApi;

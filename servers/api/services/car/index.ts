@@ -6,8 +6,8 @@ const cars: Car[] = [
     numberPlate: 'DT-23323',
     modelName: 'BMW-52',
     uid: randomId(6),
-    latitude: 23.877176,
-    longitude: 90.399452,
+    latitude: 23.8479,
+    longitude: 90.2576,
     createAt: new Date(),
     updateAt: new Date(),
     image: {
@@ -19,8 +19,8 @@ const cars: Car[] = [
     numberPlate: 'PT-23323',
     modelName: 'Toyota',
     uid: randomId(6),
-    latitude: 23.677176,
-    longitude: 90.399452,
+    latitude: 23.748,
+    longitude: 90.4122,
     createAt: new Date(),
     updateAt: new Date(),
     image: {
@@ -32,8 +32,8 @@ const cars: Car[] = [
     numberPlate: 'TP-32',
     modelName: 'Range Rover',
     uid: randomId(6),
-    latitude: 23.277176,
-    longitude: 90.299452,
+    latitude: 23.8759,
+    longitude: 90.3795,
     createAt: new Date(),
     updateAt: new Date(),
     image: {

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { City } from 'types';
 import { CarIcon, UserIcon } from 'ui/icons';
 
-const NoSSRMap = dynamic(() => import('./Map'), { ssr: false });
+const NoSSRMap = dynamic(() => import('ui/components/Map'), { ssr: false });
 
 const CityDetails: React.FC<City> = ({
     country,
@@ -18,7 +18,13 @@ const CityDetails: React.FC<City> = ({
     return (
         <section className="mt-7 flex bg-white shadow-xl">
             <div className="w-9/12">
-                <NoSSRMap zoomLavel={zoomLavel} assignedCar={assignedCar} latitude={latitude} longitude={longitude} />
+                <NoSSRMap
+                    icon="/static/assets/images/car.png"
+                    zoomLavel={zoomLavel}
+                    assignedCar={assignedCar}
+                    latitude={latitude}
+                    longitude={longitude}
+                />
             </div>
             <div className="w-3/12 relative">
                 <img className="absolute object-cover min-w-full min-h-full" src={image.url} alt={image.name} />

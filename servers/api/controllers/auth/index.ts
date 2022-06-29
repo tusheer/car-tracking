@@ -1,7 +1,7 @@
 import express from 'express';
 import { handleValidation } from '../../middlewares/index';
 import { BadRequest } from '../../common/errors';
-import { createUser, checkUser, createUserValidate } from '../../services/auth';
+import { createUser, checkUser, createUserValidate, getAllOperators } from '../../services/auth';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
@@ -9,8 +9,8 @@ const router = express.Router();
 dotenv.config();
 const createToken = (user) =>
   jwt.sign(
-    { ...user, exp: Math.floor(Date.now() / 1000) + parseInt(process.env.JWT_EXPIRES_IN) },
-    process.env.JWT_SECRET
+    { ...user, exp: Math.floor(Date.now() / 1000) + parseInt(process.env.JWT_EXPIRES_IN || '50000000') },
+    process.env.JWT_SECRET || 'secret'
   );
 
 const createUserHandler = async (req, res, next) => {
@@ -54,8 +54,18 @@ const managerLoginHandler = async (req, res, next) => {
   }
 };
 
+const getAllOperatorsHandler = async (req, res, next) => {
+  try {
+    const allOperators = await getAllOperators();
+    return res.status(200).send(allOperators);
+  } catch (error) {
+    next(error);
+  }
+};
+
 router.post('/register', handleValidation(createUserValidate), createUserHandler);
 router.post('/login/manager', managerLoginHandler);
+router.get('/user/operators', getAllOperatorsHandler);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);
 
 export default router;

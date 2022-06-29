@@ -67,9 +67,44 @@ export const cityApi = baseApi.injectEndpoints({
                 } catch {}
             },
         }),
+        assignOperator: build.mutation<City, Pick<City, 'assignedOperator' | 'uid'>>({
+            query: ({ uid, assignedOperator }) => ({
+                url: `/city/${uid}/assign/operator`,
+                method: 'POST',
+                body: assignedOperator,
+            }),
+            invalidatesTags: ['City'],
+            async onQueryStarted({ uid }, { dispatch, queryFulfilled }) {
+                try {
+                    const { data: updatedPost } = await queryFulfilled;
+                    dispatch(
+                        cityApi.util.updateQueryData('getCity', uid, (draft) => {
+                            Object.assign(draft, updatedPost);
+                        })
+                    );
+                } catch {}
+            },
+        }),
         deleteAssignCar: build.mutation<City, { cityUid: string; carUid: string }>({
             query: ({ carUid, cityUid }) => ({
                 url: `/city/${cityUid}/assign/car/${carUid}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['City'],
+            async onQueryStarted({ cityUid }, { dispatch, queryFulfilled }) {
+                try {
+                    const { data: updatedPost } = await queryFulfilled;
+                    dispatch(
+                        cityApi.util.updateQueryData('getCity', cityUid, (draft) => {
+                            Object.assign(draft, updatedPost);
+                        })
+                    );
+                } catch {}
+            },
+        }),
+        deleteAssignOperator: build.mutation<City, { cityUid: string; operatorUid: string }>({
+            query: ({ operatorUid, cityUid }) => ({
+                url: `/city/${cityUid}/assign/operator/${operatorUid}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['City'],
@@ -103,4 +138,6 @@ export const {
     useGetCityQuery,
     useAssignCarMutation,
     useDeleteAssignCarMutation,
+    useAssignOperatorMutation,
+    useDeleteAssignOperatorMutation,
 } = cityApi;

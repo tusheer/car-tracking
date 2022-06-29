@@ -7,7 +7,7 @@ import randomId from '../../utils/randomId';
 const cities: City[] = [
   {
     name: 'Dhaka',
-    zoomLavel: 4,
+    zoomLavel: 10,
     assignedCar: [],
     assignedOperator: [],
     country: 'Bangladesh',
@@ -79,6 +79,21 @@ const assignCar = async (uid, payload) => {
 
   return _city;
 };
+const assignOperator = async (uid, payload) => {
+  const findIndex = cities.findIndex((data) => data.uid === uid);
+  if (findIndex < 0) {
+    return new NotFound('City Not found');
+  }
+
+  const _operator = {
+    ...cities[findIndex],
+    assignedOperator: payload,
+  };
+
+  cities[findIndex] = _operator;
+
+  return _operator;
+};
 const removeAssignCar = async (cityUid, carUid) => {
   const findCityIndex = cities.findIndex((data) => data.uid === cityUid);
 
@@ -90,13 +105,39 @@ const removeAssignCar = async (cityUid, carUid) => {
 
   const findCarIndex = assignedCarsList.findIndex((car) => car.uid === carUid);
 
-  console.log(findCarIndex);
-
   assignedCarsList.splice(findCarIndex, 1);
 
   cities[findCityIndex].assignedCar = assignedCarsList;
 
   return cities[findCityIndex];
 };
+const removeAssignOperator = async (cityUid, operatorUid) => {
+  const findCityIndex = cities.findIndex((data) => data.uid === cityUid);
 
-export { getAllCity, createCity, createValidate, deleteCity, updateCity, getCity, assignCar, removeAssignCar };
+  if (findCityIndex < 0) {
+    return new NotFound('City Not found');
+  }
+
+  const assignedOperatorList = cities[findCityIndex].assignedOperator;
+
+  const findOperatorIndex = assignedOperatorList.findIndex((car) => car.uid === operatorUid);
+
+  assignedOperatorList.splice(findOperatorIndex, 1);
+
+  cities[findCityIndex].assignedOperator = assignedOperatorList;
+
+  return cities[findCityIndex];
+};
+
+export {
+  getAllCity,
+  createCity,
+  createValidate,
+  deleteCity,
+  updateCity,
+  getCity,
+  assignCar,
+  removeAssignCar,
+  assignOperator,
+  removeAssignOperator,
+};

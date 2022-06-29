@@ -2,18 +2,62 @@ import { save, findOne } from '../../common/handler';
 import { createUserValidate } from './validation';
 import bcrypt from 'bcrypt';
 import { User } from 'types';
+import randomId from '../../utils/randomId';
 
 const users: User[] = [
   {
-    email: 'admin@gmail.com',
+    email: 'operator@gmail.com',
     createAt: new Date(),
     updateAt: new Date(),
-    assignedCity: [],
-    lastName: 'Admin',
+    lastName: '1',
     firstName: 'User',
     password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
     isActive: true,
     uid: '123456',
+    userType: 'OPERATOR',
+  },
+  {
+    email: 'admin2@gmail.com',
+    createAt: new Date(),
+    updateAt: new Date(),
+    lastName: '2',
+    firstName: 'User',
+    password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+    isActive: true,
+    uid: randomId(6),
+    userType: 'OPERATOR',
+  },
+  {
+    email: 'admin3@gmail.com',
+    createAt: new Date(),
+    updateAt: new Date(),
+    lastName: '3',
+    firstName: 'User',
+    password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+    isActive: true,
+    uid: randomId(6),
+    userType: 'OPERATOR',
+  },
+  {
+    email: 'admin4@gmail.com',
+    createAt: new Date(),
+    updateAt: new Date(),
+    lastName: '4',
+    firstName: 'User',
+    password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+    isActive: true,
+    uid: randomId(6),
+    userType: 'OPERATOR',
+  },
+  {
+    email: 'admin@gmail.com',
+    createAt: new Date(),
+    updateAt: new Date(),
+    lastName: 'User',
+    firstName: 'Admin',
+    password: '$2b$10$MW/HRUT2IiT1EJISvfLXcuZzorl5F9A4JwSnPRDGvL7H4VNXwYTpm',
+    isActive: true,
+    uid: randomId(6),
     userType: 'MANAGER',
   },
 ];
@@ -66,4 +110,12 @@ const createUser = async (user) => {
   }
 };
 
-export { searchOne, checkUser, createUser, createUserValidate };
+const getAllOperators = async () => {
+  const operators = users
+    .sort((a, b) => new Date(b.createAt).valueOf() - new Date(a.createAt).valueOf())
+    .filter((_user) => _user.userType === 'OPERATOR');
+
+  return operators;
+};
+
+export { searchOne, checkUser, createUser, createUserValidate, getAllOperators };

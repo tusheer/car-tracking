@@ -74,7 +74,7 @@ const AssignCarModal: React.FC<IAssignCarModal> = ({ open, onClose, assingedCar,
                     </span>
                 </header>
                 {!isLoading && data ? (
-                    <div className="overflow-y-auto flex -mx-2.5 px-7 pb-6 pt-2 max-h-[calc(100vh-160px)]">
+                    <div className="overflow-y-auto flex flex-wrap gap-y-5 -mx-2.5 px-7 pb-6 pt-2 max-h-[calc(100vh-160px)]">
                         {carList.map((car) => {
                             return (
                                 <div key={car.uid} className=" px-2.5  w-4/12 ">

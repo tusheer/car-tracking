@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import Sidebar from 'ui/components/Sidebar';
 import Navbar from 'ui/components/Navbar';
-import { CarIcon, CityIcon, UserIcon } from 'ui/icons';
+import { CityIcon } from 'ui/icons';
 import { isStringMatched } from 'utils';
 
 type Props = {
@@ -24,22 +24,6 @@ const DashboardLayout: React.FC<Props> = ({ children, title }) => {
                         ),
                         link: '/city',
                         isActive: isStringMatched(router.pathname, 'city'),
-                    },
-                    {
-                        name: 'Car',
-                        icon: (active) => (
-                            <CarIcon className={`w-6 h-6 ${active ? 'text-ct-purple-700' : 'text-black'}`} />
-                        ),
-                        link: '/car',
-                        isActive: isStringMatched(router.pathname, 'car'),
-                    },
-                    {
-                        name: 'User',
-                        icon: (active) => (
-                            <UserIcon className={`w-6 h-6 ${active ? 'text-ct-purple-700' : 'text-black'}`} />
-                        ),
-                        link: '/user',
-                        isActive: isStringMatched(router.pathname, 'user'),
                     },
                 ]}
                 renderLinks={(element, to) => (

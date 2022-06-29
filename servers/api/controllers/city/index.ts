@@ -9,6 +9,8 @@ import {
   getCity,
   assignCar,
   removeAssignCar,
+  assignOperator,
+  removeAssignOperator,
 } from '../../services/city';
 import dotenv from 'dotenv';
 import randomId from '../../utils/randomId';
@@ -80,11 +82,29 @@ const assignCarHander = async (req, res, next) => {
     next(error);
   }
 };
+const assignOperatorHander = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const opetators = req.body;
+    const cityData = await assignOperator(uid, opetators);
+    res.status(200).send(cityData);
+  } catch (error) {
+    next(error);
+  }
+};
 const handleDeleteAssignCar = async (req, res, next) => {
   try {
-    console.log(req.params);
     const { cityUid, carUid } = req.params;
     const cityData = await removeAssignCar(cityUid, carUid);
+    res.status(200).send(cityData);
+  } catch (error) {
+    next(error);
+  }
+};
+const handleDeleteAssignOperator = async (req, res, next) => {
+  try {
+    const { cityUid, operatorUid } = req.params;
+    const cityData = await removeAssignOperator(cityUid, operatorUid);
     res.status(200).send(cityData);
   } catch (error) {
     next(error);
@@ -95,7 +115,9 @@ router.get('/', getCitiesHandler);
 router.get('/:uid', getCityHandler);
 router.post('/create', handleValidation(createValidate), createCityHander);
 router.post('/:uid/assign/car', assignCarHander);
+router.post('/:uid/assign/operator', assignOperatorHander);
 router.delete('/:cityUid/assign/car/:carUid', handleDeleteAssignCar);
+router.delete('/:cityUid/assign/operator/:operatorUid', handleDeleteAssignOperator);
 router.put('/edit/:uid', handleValidation(createValidate), updateCityHander);
 router.delete('/:uid', deleteCityHander);
 // router.post('/check-username', handleValidation(validateUsername), checkUserEmailHandler);

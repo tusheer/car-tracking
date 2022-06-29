@@ -1,5 +1,6 @@
 import { Car } from './Car';
 import { ImageType } from './Image';
+import { User } from './User';
 
 export type City = {
     uid: string;
@@ -7,7 +8,7 @@ export type City = {
     createAt: Date;
     updateAt: Date;
     assignedCar: Car[];
-    assignedOperator: [];
+    assignedOperator: User[];
     longitude: number;
     latitude: number;
     zoomLavel: number;
