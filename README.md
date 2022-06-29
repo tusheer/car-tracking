@@ -22,6 +22,8 @@ npm run dev
 | Operator Portal | 3001 |
 | Api Server      | 4000 |
 
+## Folder structure
+
 ```
 car-tracking
 ├── apps  - Manage Frontend Applications
