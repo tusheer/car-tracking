@@ -54,7 +54,7 @@ const handleValidation = (validate) => {
 const authenticateRequest = async (req, res, next) => {
   const auth = req.headers['authorization'];
   if (auth) {
-    jwt.verify(auth, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(auth, process.env.JWT_SECRET || 'secret', (err, decoded) => {
       if (err) {
         res.status(401).send({
           success: false,
