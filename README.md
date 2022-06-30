@@ -34,9 +34,8 @@ car-tracking
 |        └── components
 |        └── hooks
 |        └── icons
-|        └── components
 |   └──  types - Typescript types
-|   └── utils - Typescript utilites
+|   └──  utils - Typescript utilites
 |   └──  ts-config - Typescript configuration
 |   └──  eslint-config-custom - Typescript configuration
 |   └──  tailwind-config - Typescript configuration
@@ -48,9 +47,9 @@ README.md
 
 ## Tech stack
 
-Framework or Library: Typescript, NextJS, React
-Css Utility Framework : TailwindCSS
-Store : Redux
-Api call and cache : Redux RTK
-Map : Leafletjs
+Framework or Library: Typescript, NextJS, React |
+Css Utility Framework : TailwindCSS |
+Store : Redux |
+Api call and cache : Redux RTK |
+Map : Leafletjs |
 Backend : NodeJS, ExpressJS
